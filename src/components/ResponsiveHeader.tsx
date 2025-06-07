@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Filter } from 'lucide-react';
@@ -22,9 +21,6 @@ const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => 
 
         {/* Logo */}
         <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
-          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-cdek-gradient rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xs sm:text-sm">С</span>
-          </div>
           {!isMobile && (
             <div className="hidden lg:block">
               <h1 className="text-lg xl:text-xl font-bold text-cdek-green whitespace-nowrap">СДЭК Salary Monitor</h1>

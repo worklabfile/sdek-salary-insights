@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -15,7 +14,6 @@ const MobileNavigation = ({ activeTab, onTabChange }: MobileNavigationProps) => 
 
   const tabs = [
     { id: 'dashboard', label: 'Главная', icon: Home },
-    { id: 'templates', label: 'Шаблоны', icon: FileText },
     { id: 'data-entry', label: 'Добавить', icon: PlusCircle },
     { id: 'analytics', label: 'Аналитика', icon: BarChart3 },
   ];
@@ -37,9 +35,6 @@ const MobileNavigation = ({ activeTab, onTabChange }: MobileNavigationProps) => 
           <SheetHeader>
             <SheetTitle className="text-left">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-cdek-gradient rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">С</span>
-                </div>
                 <div>
                   <h1 className="text-lg font-bold text-cdek-green">СДЭК</h1>
                   <p className="text-xs text-muted-foreground">Salary Monitor</p>
@@ -69,17 +64,6 @@ const MobileNavigation = ({ activeTab, onTabChange }: MobileNavigationProps) => 
                 </Button>
               );
             })}
-          </div>
-
-          <div className="mt-8 pt-8 border-t border-border">
-            <div className="space-y-3">
-              <Badge variant="outline" className="w-full bg-cdek-success/10 text-cdek-success border-cdek-success/20 justify-center py-2">
-                Парсинг активен
-              </Badge>
-              <Badge variant="outline" className="w-full bg-primary/10 text-primary border-primary/20 justify-center py-2">
-                2,847 записей
-              </Badge>
-            </div>
           </div>
         </SheetContent>
       </Sheet>

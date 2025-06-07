@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -117,11 +116,11 @@ const Analytics = () => {
 
       {/* Analytics Tabs */}
       <Tabs defaultValue="comparison" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 lg:w-[500px] bg-card border border-border">
-          <TabsTrigger value="comparison">Сравнение ЗП</TabsTrigger>
-          <TabsTrigger value="trends">Тренды</TabsTrigger>
-          <TabsTrigger value="sources">Источники</TabsTrigger>
-          <TabsTrigger value="recommendations">Рекомендации</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 lg:w-[600px] mx-auto bg-card border border-border mb-6">
+          <TabsTrigger value="comparison" className="text-xs sm:text-sm px-2 sm:px-3">Сравнение ЗП</TabsTrigger>
+          <TabsTrigger value="trends" className="text-xs sm:text-sm px-2 sm:px-3">Тренды</TabsTrigger>
+          <TabsTrigger value="sources" className="text-xs sm:text-sm px-2 sm:px-3">Источники</TabsTrigger>
+          <TabsTrigger value="recommendations" className="text-xs sm:text-sm px-2 sm:px-3">Рекомендации</TabsTrigger>
         </TabsList>
 
         <TabsContent value="comparison" className="space-y-6">
@@ -132,16 +131,26 @@ const Analytics = () => {
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={salaryData}>
+                  <BarChart data={salaryData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                    <XAxis dataKey="position" stroke="hsl(var(--muted-foreground))" />
-                    <YAxis stroke="hsl(var(--muted-foreground))" />
+                    <XAxis 
+                      dataKey="position" 
+                      stroke="hsl(var(--muted-foreground))"
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                    />
+                    <YAxis 
+                      stroke="hsl(var(--muted-foreground))"
+                      tickFormatter={(value) => `${value.toLocaleString()} ₽`}
+                    />
                     <Tooltip 
                       contentStyle={{ 
                         backgroundColor: 'hsl(var(--card))', 
                         border: '1px solid hsl(var(--border))',
                         borderRadius: '8px'
-                      }} 
+                      }}
+                      formatter={(value) => [`${value.toLocaleString()} ₽`, '']}
                     />
                     <Bar dataKey="market_median" fill="hsl(var(--cdek-green))" name="Медиана рынка" />
                     <Bar dataKey="cdek_salary" fill="hsl(var(--primary))" name="ЗП СДЭК" />

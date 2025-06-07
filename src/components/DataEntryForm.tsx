@@ -147,17 +147,6 @@ const DataEntryForm = ({ selectedTemplate }: DataEntryFormProps) => {
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="source_url">Ссылка на источник</Label>
-                  <Input
-                    id="source_url"
-                    placeholder="https://hh.ru/vacancy/..."
-                    value={formData.source_url || ''}
-                    onChange={(e) => updateFormData('source_url', e.target.value)}
-                    className="border-border/50 focus:border-primary"
-                  />
-                </div>
-
                 {/* Additional fields for delivery positions */}
                 {selectedTemplate === 'delivery-extended' && (
                   <div className="space-y-4 pt-4 border-t border-border/50">
@@ -251,9 +240,6 @@ const DataEntryForm = ({ selectedTemplate }: DataEntryFormProps) => {
                 </div>
                 <div className="p-3 bg-cdek-success/5 rounded-lg border border-cdek-success/20">
                   <strong>Должность:</strong> Используйте точное название из вакансии для лучшей классификации.
-                </div>
-                <div className="p-3 bg-cdek-warning/5 rounded-lg border border-cdek-warning/20">
-                  <strong>Источник:</strong> Всегда указывайте ссылку на оригинальную вакансию для проверки.
                 </div>
               </div>
             </CardContent>
