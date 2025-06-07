@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
-import { Menu, X, Home, FileText, PlusCircle, BarChart3, Settings } from 'lucide-react';
+import { Menu, Home, FileText, PlusCircle, BarChart3 } from 'lucide-react';
 
 interface MobileNavigationProps {
   activeTab: string;
@@ -18,7 +18,6 @@ const MobileNavigation = ({ activeTab, onTabChange }: MobileNavigationProps) => 
     { id: 'templates', label: 'Шаблоны', icon: FileText },
     { id: 'data-entry', label: 'Добавить', icon: PlusCircle },
     { id: 'analytics', label: 'Аналитика', icon: BarChart3 },
-    { id: 'sources', label: 'Источники', icon: Settings },
   ];
 
   const handleTabClick = (tabId: string) => {

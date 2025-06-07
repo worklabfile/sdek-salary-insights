@@ -9,7 +9,6 @@ import TemplateSelector from '@/components/TemplateSelector';
 import DataEntryForm from '@/components/DataEntryForm';
 import Analytics from '@/components/Analytics';
 import SalaryComparison from '@/components/SalaryComparison';
-import SourcesManager from '@/components/SourcesManager';
 import RecentActivity from '@/components/RecentActivity';
 
 const Index = () => {
@@ -27,7 +26,7 @@ const Index = () => {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Desktop Tabs */}
           {!isMobile && (
-            <TabsList className="grid w-full grid-cols-5 lg:w-[600px] mx-auto bg-card border border-border">
+            <TabsList className="grid w-full grid-cols-4 lg:w-[500px] mx-auto bg-card border border-border">
               <TabsTrigger value="dashboard" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
                 Дашборд
               </TabsTrigger>
@@ -39,9 +38,6 @@ const Index = () => {
               </TabsTrigger>
               <TabsTrigger value="analytics" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
                 Аналитика
-              </TabsTrigger>
-              <TabsTrigger value="sources" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
-                Источники
               </TabsTrigger>
             </TabsList>
           )}
@@ -76,11 +72,6 @@ const Index = () => {
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="animate-fade-in">
             <Analytics />
-          </TabsContent>
-
-          {/* Sources Tab */}
-          <TabsContent value="sources" className="animate-fade-in">
-            <SourcesManager />
           </TabsContent>
         </Tabs>
       </main>

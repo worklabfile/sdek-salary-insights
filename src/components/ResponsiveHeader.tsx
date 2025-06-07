@@ -1,9 +1,7 @@
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Calendar, Filter, Bell } from 'lucide-react';
+import { Calendar, Filter } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useIsMobile } from '@/hooks/use-mobile';
 import MobileNavigation from './MobileNavigation';
@@ -14,7 +12,6 @@ interface ResponsiveHeaderProps {
 }
 
 const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => {
-  const [searchQuery, setSearchQuery] = useState('');
   const isMobile = useIsMobile();
 
   return (
@@ -36,20 +33,8 @@ const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => 
           )}
         </div>
 
-        {/* Search & Filters */}
+        {/* Filters - Hidden on mobile */}
         <div className="flex items-center space-x-2 sm:space-x-4 flex-1 min-w-0">
-          {/* Search */}
-          <div className="relative flex-1 max-w-xs sm:max-w-sm">
-            <Search className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-3 h-3 sm:w-4 sm:h-4" />
-            <Input
-              placeholder={isMobile ? "Поиск..." : "Поиск по должностям, компаниям..."}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-8 sm:pl-10 border-border/50 focus:border-primary text-xs sm:text-sm h-8 sm:h-10"
-            />
-          </div>
-
-          {/* Filters - Hidden on mobile */}
           {!isMobile && (
             <div className="hidden md:flex items-center space-x-2">
               <Select>
@@ -93,12 +78,6 @@ const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => 
               </Badge>
             </>
           )}
-          
-          {/* Notifications */}
-          <Button variant="ghost" size="sm" className="p-2 touch-friendly">
-            <Bell className="h-4 w-4" />
-            {isMobile && <span className="sr-only">Уведомления</span>}
-          </Button>
         </div>
       </div>
     </header>
