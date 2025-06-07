@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -44,8 +43,7 @@ const TemplateSelector = ({ onSelectTemplate }: TemplateSelectorProps) => {
         { id: 'position', name: 'Должность', type: 'text', required: true },
         { id: 'company', name: 'Компания', type: 'text', required: true },
         { id: 'salary', name: 'Зарплата', type: 'number', required: true },
-        { id: 'city', name: 'Город', type: 'text', required: true },
-        { id: 'source', name: 'Источник', type: 'select', required: true, options: ['hh.ru', 'Telegram', 'Соцсети'] }
+        { id: 'city', name: 'Город', type: 'text', required: true }
       ]
     },
     {
@@ -63,8 +61,7 @@ const TemplateSelector = ({ onSelectTemplate }: TemplateSelectorProps) => {
         { id: 'fuel', name: 'ГСМ', type: 'checkbox', required: false },
         { id: 'parking', name: 'Парковка', type: 'checkbox', required: false },
         { id: 'schedule', name: 'График работы', type: 'text', required: false },
-        { id: 'benefits', name: 'Бенефиты', type: 'text', required: false },
-        { id: 'source', name: 'Источник', type: 'select', required: true, options: ['hh.ru', 'Telegram', 'Соцсети', 'Профсообщества'] }
+        { id: 'benefits', name: 'Бенефиты', type: 'text', required: false }
       ]
     },
     {
@@ -79,8 +76,7 @@ const TemplateSelector = ({ onSelectTemplate }: TemplateSelectorProps) => {
         { id: 'salary', name: 'Зарплата', type: 'number', required: true },
         { id: 'city', name: 'Город', type: 'text', required: true },
         { id: 'shift_type', name: 'Тип смены', type: 'select', required: false, options: ['Дневная', 'Ночная', 'Сменная'] },
-        { id: 'warehouse_size', name: 'Размер склада', type: 'text', required: false },
-        { id: 'source', name: 'Источник', type: 'select', required: true, options: ['hh.ru', 'Telegram', 'Соцсети'] }
+        { id: 'warehouse_size', name: 'Размер склада', type: 'text', required: false }
       ]
     }
   ];

@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -27,15 +26,7 @@ const ResponsiveQuickActions = ({ onTabChange }: ResponsiveQuickActionsProps) =>
       icon: BarChart3,
       variant: 'outline' as const,
       className: 'border-primary hover:bg-primary/5'
-    },
-    {
-      id: 'sources',
-      title: 'Настроить парсинг',
-      description: 'Автоматический сбор',
-      icon: Settings,
-      variant: 'outline' as const,
-      className: 'border-primary hover:bg-primary/5'
-    },
+    }
   ];
 
   if (isMobile) {

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -148,33 +147,15 @@ const DataEntryForm = ({ selectedTemplate }: DataEntryFormProps) => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="source">Источник *</Label>
-                    <Select value={formData.source || ''} onValueChange={(value) => updateFormData('source', value)}>
-                      <SelectTrigger className="border-border/50">
-                        <SelectValue placeholder="Выберите источник" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-card border-border z-50">
-                        <SelectItem value="hh">hh.ru</SelectItem>
-                        <SelectItem value="telegram">Telegram каналы</SelectItem>
-                        <SelectItem value="vk">ВКонтакте</SelectItem>
-                        <SelectItem value="profcom">Профсообщества</SelectItem>
-                        <SelectItem value="manual">Ручной ввод</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="source_url">Ссылка на источник</Label>
-                    <Input
-                      id="source_url"
-                      placeholder="https://hh.ru/vacancy/..."
-                      value={formData.source_url || ''}
-                      onChange={(e) => updateFormData('source_url', e.target.value)}
-                      className="border-border/50 focus:border-primary"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="source_url">Ссылка на источник</Label>
+                  <Input
+                    id="source_url"
+                    placeholder="https://hh.ru/vacancy/..."
+                    value={formData.source_url || ''}
+                    onChange={(e) => updateFormData('source_url', e.target.value)}
+                    className="border-border/50 focus:border-primary"
+                  />
                 </div>
 
                 {/* Additional fields for delivery positions */}
