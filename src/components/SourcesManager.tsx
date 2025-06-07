@@ -1,8 +1,5 @@
 
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Progress } from '@/components/ui/progress';
@@ -12,7 +9,6 @@ import { useToast } from '@/hooks/use-toast';
 
 const SourcesManager = () => {
   const { toast } = useToast();
-  const [newSourceUrl, setNewSourceUrl] = useState('');
 
   const sources = [
     {
@@ -65,17 +61,6 @@ const SourcesManager = () => {
     { source: 'Профсообщества', total: 189, today: 8, success_rate: 92 }
   ];
 
-  const addSource = () => {
-    if (!newSourceUrl) return;
-    
-    toast({
-      title: "Источник добавлен",
-      description: "Новый источник добавлен в систему парсинга",
-    });
-    
-    setNewSourceUrl('');
-  };
-
   const toggleSource = (sourceId: number) => {
     toast({
       title: "Статус изменен",
@@ -116,54 +101,17 @@ const SourcesManager = () => {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">Управление источниками</h2>
-          <p className="text-muted-foreground">Настройка автоматического парсинга данных о вакансиях</p>
+          <p className="text-muted-foreground">Мониторинг автоматического парсинга данных о вакансиях</p>
         </div>
-        <Button className="bg-cdek-gradient hover:opacity-90">
-          Запустить полный парсинг
-        </Button>
       </div>
 
       <Tabs defaultValue="sources" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 lg:w-[400px] bg-card border border-border">
+        <TabsList className="grid w-full grid-cols-2 lg:w-[300px] bg-card border border-border">
           <TabsTrigger value="sources">Источники</TabsTrigger>
           <TabsTrigger value="statistics">Статистика</TabsTrigger>
-          <TabsTrigger value="settings">Настройки</TabsTrigger>
         </TabsList>
 
         <TabsContent value="sources" className="space-y-6">
-          {/* Add New Source */}
-          <Card className="shadow-cdek border-border/50 bg-card/50 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle>Добавить новый источник</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex space-x-4">
-                <div className="flex-1">
-                  <Input
-                    placeholder="URL источника или ключевые слова для поиска"
-                    value={newSourceUrl}
-                    onChange={(e) => setNewSourceUrl(e.target.value)}
-                    className="border-border/50 focus:border-primary"
-                  />
-                </div>
-                <Select>
-                  <SelectTrigger className="w-[150px] border-border/50">
-                    <SelectValue placeholder="Тип" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-card border-border z-50">
-                    <SelectItem value="hh">hh.ru</SelectItem>
-                    <SelectItem value="telegram">Telegram</SelectItem>
-                    <SelectItem value="vk">ВКонтакте</SelectItem>
-                    <SelectItem value="profcom">Профсообщества</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Button onClick={addSource} className="bg-primary hover:bg-primary/90">
-                  Добавить
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Sources List */}
           <div className="grid grid-cols-1 gap-4">
             {sources.map((source) => (
@@ -260,102 +208,6 @@ const SourcesManager = () => {
                     <div className="text-2xl font-bold">18</div>
                     <div className="text-sm">Автоматическая очистка</div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="settings" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="shadow-cdek border-border/50 bg-card/50 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>Настройки парсинга</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">Автоматический парсинг</div>
-                    <div className="text-sm text-muted-foreground">Сканировать источники каждые 30 минут</div>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">Удаление дубликатов</div>
-                    <div className="text-sm text-muted-foreground">Автоматически удалять повторяющиеся вакансии</div>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">Уведомления об ошибках</div>
-                    <div className="text-sm text-muted-foreground">Отправлять уведомления при сбоях парсинга</div>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Интервал парсинга (минуты)</label>
-                  <Select defaultValue="30">
-                    <SelectTrigger className="border-border/50">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-card border-border z-50">
-                      <SelectItem value="15">15 минут</SelectItem>
-                      <SelectItem value="30">30 минут</SelectItem>
-                      <SelectItem value="60">1 час</SelectItem>
-                      <SelectItem value="180">3 часа</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-cdek border-border/50 bg-card/50 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>Фильтры и обработка</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Минимальная зарплата (₽)</label>
-                  <Input
-                    type="number"
-                    placeholder="50000"
-                    className="border-border/50 focus:border-primary"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Исключить ключевые слова</label>
-                  <Input
-                    placeholder="стажер, подработка, удаленно"
-                    className="border-border/50 focus:border-primary"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Классификация должностей</label>
-                  <Select defaultValue="auto">
-                    <SelectTrigger className="border-border/50">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-card border-border z-50">
-                      <SelectItem value="auto">Автоматическая</SelectItem>
-                      <SelectItem value="manual">Ручная проверка</SelectItem>
-                      <SelectItem value="mixed">Смешанная</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">NLP обработка</div>
-                    <div className="text-sm text-muted-foreground">Использовать ИИ для анализа текста вакансий</div>
-                  </div>
-                  <Switch defaultChecked />
                 </div>
               </CardContent>
             </Card>

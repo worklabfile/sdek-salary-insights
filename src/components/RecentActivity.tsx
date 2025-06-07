@@ -37,8 +37,8 @@ const RecentActivity = () => {
         <CardTitle className={`flex items-center gap-2 ${
           isMobile ? 'text-lg' : 'text-xl'
         }`}>
-          <Clock className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'}`} />
-          Недавняя активность
+          <Clock className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} flex-shrink-0`} />
+          <span className="whitespace-nowrap">Недавняя активность</span>
         </CardTitle>
       </CardHeader>
       <CardContent className={isMobile ? 'p-4 pt-0' : ''}>
@@ -52,7 +52,7 @@ const RecentActivity = () => {
                   isMobile ? 'p-3' : 'p-3'
                 }`}
               >
-                <div className={`p-1.5 rounded-full ${
+                <div className={`p-1.5 rounded-full flex-shrink-0 ${
                   activity.type === 'success' ? 'bg-cdek-success/20 text-cdek-success' :
                   activity.type === 'info' ? 'bg-blue-500/20 text-blue-600' :
                   'bg-primary/20 text-primary'
@@ -71,7 +71,7 @@ const RecentActivity = () => {
                     {activity.details}
                   </div>
                 </div>
-                <Badge variant="outline" className={`text-xs whitespace-nowrap ${
+                <Badge variant="outline" className={`text-xs flex-shrink-0 ${
                   isMobile ? 'text-xs px-2 py-1' : ''
                 }`}>
                   {activity.time}

@@ -18,20 +18,20 @@ const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => 
   const isMobile = useIsMobile();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="header-fixed w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 sm:h-16 items-center px-3 sm:px-4 gap-2 sm:gap-4">
         {/* Mobile Navigation */}
         <MobileNavigation activeTab={activeTab} onTabChange={onTabChange} />
 
         {/* Logo */}
-        <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
           <div className="w-6 h-6 sm:w-8 sm:h-8 bg-cdek-gradient rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-xs sm:text-sm">С</span>
           </div>
           {!isMobile && (
-            <div>
-              <h1 className="text-lg xl:text-xl font-bold text-cdek-green">СДЭК Salary Monitor</h1>
-              <p className="text-xs text-muted-foreground hidden sm:block">Система мониторинга зарплат</p>
+            <div className="hidden lg:block">
+              <h1 className="text-lg xl:text-xl font-bold text-cdek-green whitespace-nowrap">СДЭК Salary Monitor</h1>
+              <p className="text-xs text-muted-foreground hidden xl:block">Система мониторинга зарплат</p>
             </div>
           )}
         </div>
@@ -51,13 +51,13 @@ const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => 
 
           {/* Filters - Hidden on mobile */}
           {!isMobile && (
-            <>
+            <div className="hidden md:flex items-center space-x-2">
               <Select>
                 <SelectTrigger className="w-[140px] lg:w-[180px] border-border/50 h-10">
                   <Calendar className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Период" />
                 </SelectTrigger>
-                <SelectContent className="bg-card border-border z-50">
+                <SelectContent className="dropdown-content z-[100]">
                   <SelectItem value="week">Неделя</SelectItem>
                   <SelectItem value="month">Месяц</SelectItem>
                   <SelectItem value="quarter">Квартал</SelectItem>
@@ -70,32 +70,32 @@ const ResponsiveHeader = ({ activeTab, onTabChange }: ResponsiveHeaderProps) => 
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Регион" />
                 </SelectTrigger>
-                <SelectContent className="bg-card border-border z-50">
+                <SelectContent className="dropdown-content z-[100]">
                   <SelectItem value="moscow">Москва</SelectItem>
                   <SelectItem value="spb">СПб</SelectItem>
                   <SelectItem value="irkutsk">Иркутск</SelectItem>
                   <SelectItem value="all">Все</SelectItem>
                 </SelectContent>
               </Select>
-            </>
+            </div>
           )}
         </div>
 
         {/* Status Indicators */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 flex-shrink-0">
           {!isMobile && (
             <>
-              <Badge variant="outline" className="bg-cdek-success/10 text-cdek-success border-cdek-success/20 text-xs px-2 py-1">
+              <Badge variant="outline" className="bg-cdek-success/10 text-cdek-success border-cdek-success/20 text-xs px-2 py-1 whitespace-nowrap">
                 Активен
               </Badge>
-              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-xs px-2 py-1">
+              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-xs px-2 py-1 whitespace-nowrap">
                 2,847
               </Badge>
             </>
           )}
           
           {/* Notifications */}
-          <Button variant="ghost" size="sm" className="p-2">
+          <Button variant="ghost" size="sm" className="p-2 touch-friendly">
             <Bell className="h-4 w-4" />
             {isMobile && <span className="sr-only">Уведомления</span>}
           </Button>

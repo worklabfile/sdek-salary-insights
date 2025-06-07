@@ -179,11 +179,68 @@
   display: none;
 }
 
-/* Ensure dropdowns work properly on mobile */
+/* Enhanced z-index management for dropdowns and overlays */
 [data-radix-select-content] {
-  @apply z-50 bg-card border-border;
+  @apply z-[100] bg-card border-border shadow-lg;
 }
 
 [data-radix-popover-content] {
-  @apply z-50 bg-card border-border;
+  @apply z-[100] bg-card border-border shadow-lg;
+}
+
+[data-radix-dialog-overlay] {
+  @apply z-[200];
+}
+
+[data-radix-dialog-content] {
+  @apply z-[201];
+}
+
+[data-radix-sheet-overlay] {
+  @apply z-[300];
+}
+
+[data-radix-sheet-content] {
+  @apply z-[301];
+}
+
+[data-radix-toast-viewport] {
+  @apply z-[400];
+}
+
+/* Prevent layout shifts and overlapping */
+.header-fixed {
+  @apply sticky top-0 z-50;
+}
+
+.main-content {
+  @apply relative z-10;
+}
+
+.dropdown-content {
+  @apply z-[100] bg-card/95 backdrop-blur-sm border-border shadow-lg;
+}
+
+/* Enhanced mobile touch interactions */
+@media (max-width: 768px) {
+  .touch-friendly {
+    @apply min-h-[44px] min-w-[44px] touch-manipulation;
+  }
+  
+  /* Prevent horizontal scroll */
+  .mobile-container {
+    @apply overflow-x-hidden;
+  }
+  
+  /* Better spacing for mobile */
+  .mobile-spacing {
+    @apply space-y-3 px-3;
+  }
+}
+
+/* Animation optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none;
+  }
 }
